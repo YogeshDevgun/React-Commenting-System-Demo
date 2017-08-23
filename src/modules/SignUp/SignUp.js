@@ -18,7 +18,7 @@ class SignUp extends Component {
             Password:
           </label>
         <input type="password"></input>
-        <Link to="/commentPage">Register</Link>
+        <Link to="/postpage">Register</Link>
       </div>
 
     );
