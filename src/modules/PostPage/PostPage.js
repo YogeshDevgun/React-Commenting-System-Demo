@@ -14,7 +14,7 @@ export default class PostPage extends Component {
         </Link><br/><br/>*/}
         <div className="post_update disp_inliFl">
           <div className="user_image">
-            <img alt="na"></img>
+            <img src={'http://lorempixel.com/45/45'}  alt="na"></img>
           </div>
           <div className="user_details">
             <div className="post_username">Yogesh Devgun</div>

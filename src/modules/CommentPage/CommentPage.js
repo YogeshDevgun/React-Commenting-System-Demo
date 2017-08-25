@@ -36,7 +36,7 @@ export default class CommentPage extends Component {
           <div key={index} className="Post Reply">
             <div className="commentToCom_Container disp_inliFl">
               <div className="comment_left">
-                <img alt="na" style={{height:'30px',width:'30px'}}></img>
+                <img src={'http://lorempixel.com/28/28'} alt="na" style={{height:'30px',width:'30px'}}></img>
               </div>
               <div className="commenttocomment_right ">
                 <div className="">
@@ -65,7 +65,7 @@ export default class CommentPage extends Component {
         <div key={index}>
           <div className="comment_box displ_inlif">
             <div className="comment_left">
-              <img className="user_img" alt="na"></img>
+              <img src={'http://lorempixel.com/28/28'} className="user_img" alt="na"></img>
             </div>
             <div className="comment_right">
               <div className="comment_username">{item.reply.replyByUser.name}</div>
@@ -87,7 +87,7 @@ export default class CommentPage extends Component {
                    return (<div key={indexe} className="Post Reply">
                      <div className="commentToCom_Container disp_inliFl">
                        <div className="comment_left">
-                         <img alt="na" style={{height:'30px',width:'30px'}}></img>
+                         <img src={'http://lorempixel.com/28/28'}  alt="na" style={{height:'30px',width:'30px'}}></img>
                        </div>
                        <div className="commenttocomment_right ">
                          <div className="">
