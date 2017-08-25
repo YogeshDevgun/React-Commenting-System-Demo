@@ -24,7 +24,9 @@ export default class PostPage extends Component {
             </div>
           </div>
         </div>
-        <div className="post">Time is precious. Waste it wisely.</div>
+        <div className="post">I Have Good News And Bad News To Tell You. The Bad News? I Have No Good News. And The Good News? I Have No Bad News.
+          Well I could agree with you, but then we’d both be wrong. So great power comes with great electricity bills.
+        </div>
         <CommentPage/>
       </div>
     )

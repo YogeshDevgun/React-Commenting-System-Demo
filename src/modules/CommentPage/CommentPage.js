@@ -1,129 +1,101 @@
 import React, {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom';
 import ReactDOM from 'react-dom';
-import CommentStatic from '../../dummy/comments.json';
-
+import MainCommentThread from './MainCommentThread'
+let CommentIndex = ''
+let CommentStatic = []
 export default class CommentPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       commentInput: '',
       postComments: [],
-      replyBox: false,
-
+      replyBox: false
     }
-
+    this.CommentBinder = this.CommentBinder.bind(this)
   }
-  componentDidMount(){
+
+  componentDidMount() {
+    this.setState({postComments: CommentStatic})
     ReactDOM.findDOMNode(this.refs.comment).focus();
   }
 
-  replyBoxHandler(){
-    this.setState({replyBox:true})
+  CommentRemover(index) {
+    console.log(index)
+    CommentStatic.splice(index, 1)
+    this.forceUpdate()
   }
+  CommentLike(index) {
+    CommentStatic[index].like_count++;
+    this.forceUpdate()
+  }
+  
+  ReplyLike(index1, index2) {
+    CommentStatic[index1].reply.replyToReply[index2].like_count++;
+    this.forceUpdate();
+  }
+
+  ReplyRemover(index1, index2) {
+    console.log(index1, index2)
+    // CommentStatic.splice(index,1)
+    CommentStatic[index1].reply.replyToReply.splice(index2, 1)
+    this.forceUpdate()
+  }
+
+  CommentBinder(e) {
+    if (e.charCode == '13') {
+      if (this.refs.comment.value) {
+        CommentStatic.splice(0, 0, {
+          "reply": {
+            "rep_id": "1",
+            "replyData": this.refs.comment.value,
+            "replyByUser": {
+              "id": "1",
+              "name": "Shweta Sharma",
+              "userImg": ""
+            },
+            "replytime": (new Date()).toDateString,
+            "replyToReply": []
+          },
+          "like_count": 0,
+          "edit": false
+        })
+        this.refs.comment.value = ''
+        this.refs.comment.blur()
+        this.forceUpdate()
+      }
+    }
+  }
+
+  HandleReply(e, a, c) {
+    console.log(e, a)
+    if (e == '13') {
+      if (a.refs.Reply.value) {
+        CommentStatic[c].reply.replyToReply.splice(0, 0, {
+          "like_count": 0,
+          "rep_tor_id": "111",
+          "replyToReplyData": a.refs.Reply.value,
+          "replyToReplyByUser": {
+            "id": "2",
+            "name": "Shweta Bajaj",
+            "userImg": ""
+          }
+        })
+        this.forceUpdate()
+      }
+    }
+  }
+
   render() {
-    var ShowReplyBox
-    if(this.state.replyBox==true){
-      ShowReplyBox =(
-        <input type="text" autoFocus/>
-      )
-    }
-    else{
-      ShowReplyBox=""
-    }
-    var replies = CommentStatic.map?CommentStatic.map((item,index)=>{
-        return (
-          <div key={index} className="Post Reply">
-            <div className="commentToCom_Container disp_inliFl">
-              <div className="comment_left">
-                <img src={'http://lorempixel.com/28/28'} alt="na" style={{height:'30px',width:'30px'}}></img>
-              </div>
-              <div className="commenttocomment_right ">
-                <div className="">
-                  <div className="comment_username">{item.reply.replyToReply[0].replyToReplyByUser.name}
-                  </div>
-                  <div className="comment_text">{item.reply.replyToReply[0].replyToReplyData}</div>
-                </div>
-                <div className="disp_inliFl comment_actions">
-                  <span className="act">Like</span>
-                  <span role="presentation" aria-hidden="true">&nbsp;·&nbsp;</span>
-                  <span className="pointer act" onClick={this.replyBoxHandler.bind(this)}>Reply</span>
-                  <span role="presentation" aria-hidden="true">&nbsp;·&nbsp;</span>
-                  <span className="act">Edit</span>
-                  <span role="presentation" aria-hidden="true">&nbsp;·&nbsp;</span>
-                  <span className="act">Delete</span>
-                </div>
-              </div>
-              </div>
-
-          </div>
-        )
-      }):''
     var comments = CommentStatic.map((item, index) => {
-      console.log(item)
-      return(
-        <div key={index}>
-          <div className="comment_box displ_inlif">
-            <div className="comment_left">
-              <img src={'http://lorempixel.com/28/28'} className="user_img" alt="na"></img>
-            </div>
-            <div className="comment_right">
-              <div className="comment_username">{item.reply.replyByUser.name}</div>
-              <div  className="comment_text">{item.reply.replyData}</div>
-              <div className="comment_actions">
-                <span className="act">Like</span>
-                <span role="presentation" aria-hidden="true"> · </span>
-                  <span className="act">Reply</span>
-                  <span role="presentation" aria-hidden="true"> · </span>
-                <span className="act">Edit</span>
-                <span role="presentation" aria-hidden="true"> · </span>
-                <span className="act">Delete</span>
-              </div>
-            </div>
-          </div>
-          <div className="commentToComment_top_margin">
-             <div>
-               {item.reply.replyToReply.map((items, indexe) => {
-                   return (<div key={indexe} className="Post Reply">
-                     <div className="commentToCom_Container disp_inliFl">
-                       <div className="comment_left">
-                         <img src={'http://lorempixel.com/28/28'}  alt="na" style={{height:'30px',width:'30px'}}></img>
-                       </div>
-                       <div className="commenttocomment_right ">
-                         <div className="">
-                           <div className="comment_username">{items.replyToReplyByUser.name}
-                           </div>
-                           <div className="comment_text">{items.replyToReplyData}</div>
-                         </div>
-                         <div className="disp_inliFl comment_actions">
-                           <span className="act">Like</span>
-                           <span role="presentation" aria-hidden="true">&nbsp;·&nbsp;</span>
-                           <span className="pointer act" onClick={this.replyBoxHandler.bind(this)}>Reply</span>
-                           <span role="presentation" aria-hidden="true">&nbsp;·&nbsp;</span>
-                           <span className="act">Edit</span>
-                           <span role="presentation" aria-hidden="true">&nbsp;·&nbsp;</span>
-                           <span className="act">Delete</span>
-                         </div>
-                       </div>
-                       </div>
-
-                   </div>)
-
-               })}
-             </div>
-                {ShowReplyBox}
-          </div>
-        </div>
-      );
+      console.log("Main",item)
+      return <MainCommentThread ReplyLike={this.ReplyLike.bind(this)} CommentLike={this.CommentLike.bind(this)} ReplyRemover={this.ReplyRemover.bind(this)} CommentRemover={this.CommentRemover.bind(this)} OnCommentKeyPress={this.HandleReply.bind(this)} item={item} index={index} key={index}/>
     })
     return (
       <div className="comment_container">
-        <form>
-          <input type="text" placeholder="Write a comment..." ref="comment" value={this.state.commentInput}></input>
-          {/*<input type='submit' value='Post Comment'/>*/}
-        </form>
+        <input type="text" placeholder="Write a comment..." ref="comment" onKeyPress={this.CommentBinder}></input>
         <div>
-         {comments}
+          {comments}
         </div>
       </div>
     )
