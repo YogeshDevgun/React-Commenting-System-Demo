@@ -40,9 +40,9 @@ export default class CommentPage extends Component {
               </div>
               <div className="commenttocomment_right ">
                 <div className="">
-                  <div className="comment_username">{item.reply[0].replyToReply[0].replyToReplyByUser.name}
+                  <div className="comment_username">{item.reply.replyToReply[0].replyToReplyByUser.name}
                   </div>
-                  <div className="comment_text">{item.reply[0].replyToReply[0].replyToReplyData}</div>
+                  <div className="comment_text">{item.reply.replyToReply[0].replyToReplyData}</div>
                 </div>
                 <div className="disp_inliFl comment_actions">
                   <span className="act">Like</span>
@@ -60,15 +60,16 @@ export default class CommentPage extends Component {
         )
       }):''
     var comments = CommentStatic.map((item, index) => {
+      console.log(item)
       return(
-        <div>
+        <div key={index}>
           <div className="comment_box displ_inlif">
             <div className="comment_left">
               <img className="user_img" alt="na"></img>
             </div>
             <div className="comment_right">
-              <div className="comment_username">{item.reply[0].replyByUser.name}</div>
-              <div  className="comment_text">{item.reply[0].replyData}</div>
+              <div className="comment_username">{item.reply.replyByUser.name}</div>
+              <div  className="comment_text">{item.reply.replyData}</div>
               <div className="comment_actions">
                 <span className="act">Like</span>
                 <span role="presentation" aria-hidden="true"> · </span>
@@ -82,7 +83,7 @@ export default class CommentPage extends Component {
           </div>
           <div className="commentToComment_top_margin">
              <div>
-               {item.reply[index].replyToReply.map((items, indexe) => {
+               {item.reply.replyToReply.map((items, indexe) => {
                    return (<div key={indexe} className="Post Reply">
                      <div className="commentToCom_Container disp_inliFl">
                        <div className="comment_left">

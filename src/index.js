@@ -5,7 +5,7 @@ import routes from './modules/app/index';
 import {render} from 'react-dom'
 require("./../public/style/main.scss")
 render(
-  <Router history={history}>
+  <Router>
         {routes}
   </Router>, document.getElementById('root')
 );
