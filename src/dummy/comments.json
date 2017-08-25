@@ -1,26 +1,65 @@
-{
-  "updates": [
-    {
-      "user_id": "1",
-      "name": "Srinivas Tamada",
-      "profile_pic": "pic.png",
-      "update_id": "62",
-      "user_update": "The Wall Script http://www.thewallscript.com",
-      "created": "1464062121",
-      "comments": [
-        {
-          "com_id": "62",
-          "uid_fk": "80",
-          "comment": "Nice",
-          "created": "1468871427",
-          "like_count": "0",
-          "name": "Arun Shekar",
-          "profile_pic": "pic.jpg",
-          "timeAgo": "2016-07-18T21:50:27+02:00"
+[
+  {
+    "reply": [
+      {
+        "rep_id": "1",
+        "replyData": "Why so serious?",
+        "replyByUser": {
+          "id": "1",
+          "name": "Yogesh Devgun",
+          "userImg": ""
         },
-        //Other Comments
-      ]
-    },
-   //Other Udates
-  ]
-}
+        "replytime": "2016-07-18T21:50:27+02:00",
+        "replyToReply": [
+          {
+            "rep_tor_id": "111",
+            "replyToReplyData": "I will be my lifetime",
+            "replyToReplyByUser": {
+              "id": "2",
+              "name": "Shivangi Sharma",
+              "userImg": ""
+            }
+          },
+          {
+            "rep_tor_id": "111",
+            "replyToReplyData": "Crazy you!",
+            "replyToReplyByUser": {
+              "id": "2",
+              "name": "Hitesh Sharda",
+              "userImg": ""
+            }
+          }
+        ]
+      }
+    ],
+    "like_count": "2",
+    "edit": false
+  },
+  {
+    "reply": [
+      {
+        "rep_id": "1",
+        "replyData": "Relax man!",
+        "replyByUser": {
+          "id": "1",
+          "name": "Akanksha Bishnoi",
+          "userImg": ""
+        },
+        "replytime": "2016-07-18T21:50:27+02:00",
+        "replyToReply": [
+          {
+            "rep_tor_id": "111",
+            "replyToReplyData": "Yo girl!",
+            "replyToReplyByUser": {
+              "id": "2",
+              "name": "Shweta Bajaj",
+              "userImg": ""
+            }
+          }
+        ]
+      }
+    ],
+    "like_count": "2",
+    "edit": false
+  }
+]
