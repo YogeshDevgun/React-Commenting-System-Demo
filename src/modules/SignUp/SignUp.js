@@ -39,21 +39,18 @@ class SignUp extends Component {
   }
 
   loginUserHandler(){
-
-    var userloggedIn = dummyUsers.map((item, index) => {
-      console.log("User", item);
-      if(this.state.username === item.username
-        && this.state.password === item.password){
-          console.log("Succces");
-          localStorage.setItem('id', item.id);
-          localStorage.setItem('name', item.name);
-          localStorage.setItem('img_url', item.img_url);
-          return true;
-        }else{
-          console.log("Fail");
-          this.setState({error: true})
-        }
+    var abc = dummyUsers.findIndex((item)=>{
+      return (item.username==this.refs.username.value && item.password==this.refs.password.value)
     })
+    if(abc>-1){
+      localStorage.setItem('id', dummyUsers[abc].id);
+          localStorage.setItem('name', dummyUsers[abc].name);
+          localStorage.setItem('img_url', dummyUsers[abc].img_url);
+this.props.history.push('/postpage')
+    }
+    else{
+       this.setState({error: true})
+    }
   }
   render() {
     var viewSwitch, errorDisplay;
@@ -97,13 +94,13 @@ class SignUp extends Component {
           <label>
             Username:
           </label>
-          <input type="text" onChange={event => this.usernameHandler(event)}></input>
+          <input type="text" ref="username"></input>
         </div><br/>
         <div className="signup_inputs">
           <label>
             Password:
           </label>&nbsp;
-          <input type="password" onChange={event => this.passwordHandler(event)}></input>
+          <input type="password" ref="password"></input>
         </div>
         {errorDisplay}
 
@@ -112,7 +109,10 @@ class SignUp extends Component {
           <span  onClick={this.switchViewHandler.bind(this)} className="login_button">Login</span>
         </div>
         <div className="clr"></div>
-        <Link to="/postpage" className="login_actionbutton">  <button onClick={this.loginUserHandler.bind(this)}>Login</button></Link>
+        <div className="login_actionbutton">
+          <Link to="/postpage" className="login_actionbutton">  <button onClick={this.loginUserHandler.bind(this)}>Login</button></Link>
+
+      </div>
       </div>
     }
     return (
@@ -125,4 +125,4 @@ class SignUp extends Component {
     );
   }
 }
-export default SignUp;
+export default SignUp

@@ -77,9 +77,9 @@ export default class CommentPage extends Component {
           "rep_tor_id": "111",
           "replyToReplyData": a.refs.Reply.value,
           "replyToReplyByUser": {
-            "id": "2",
-            "name": "Shweta Bajaj",
-            "userImg": ""
+            "id": localStorage.getItem("id"),
+            "name": localStorage.getItem("name"),
+            "userImg": localStorage.getItem("img_url")
           }
         })
         this.forceUpdate()

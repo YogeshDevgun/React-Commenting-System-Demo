@@ -19,9 +19,10 @@ export default class ReplytoReply extends React.Component {
 
     if(!this.state.replyToreplyEdit){
       replyToReply = (
-        <div className="commentToCom_Container disp_inliFl">
+        <div className="commentToCom_Container">
+          <div className="commentToCom_wrapper disp_inliFl">
           <div className="commentToCom_left">
-            <img src={'http://lorempixel.com/26/26'} alt="na"></img>
+            <img src={items.replyToReplyByUser.userImg} alt="na"></img>
           </div>
           <div className="commenttocomment_right ">
             <div className="">
@@ -38,6 +39,7 @@ export default class ReplytoReply extends React.Component {
               <span role="presentation" aria-hidden="true">&nbsp;·&nbsp;</span>
               <span onClick={()=>{this.props.ReplyRemover(this.props.indexP,indexe)}} className="act">Delete</span>
             </div>
+          </div>
           </div>
         </div>
       )

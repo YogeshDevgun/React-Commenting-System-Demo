@@ -81,9 +81,13 @@ body {
   margin-left: 39px;
   border-left: 0.9px solid #c0ccda;
   padding-left: 8px;
-  margin-top: 10px;
+  // margin-top: 10px;
 }
 
+.commentToCom_wrapper{
+  margin-top: 8px;
+      width: 100%;
+}
 .commentToCom_input input {
   width: calc(100% - 8px);
   height: 36px;
