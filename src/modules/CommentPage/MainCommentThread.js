@@ -8,6 +8,7 @@ export default class MainCommentThread extends React.Component {
     this.state = {
       replyBoxM: this.props.ReplyBox,
       editreplyBoxM: this.props.EditreplyBox,
+      replyInput: ''
     }
   }
   replyBoxHandler(index) {
@@ -32,13 +33,18 @@ export default class MainCommentThread extends React.Component {
     // this.refs.comment.value = this.props.item.reply.replyData
   }
 
+  savingReply(e){
+    console.log(e.target.value);
+    this.setState({replyInput: e.target.value})
+  }
+
   render() {
     var index = this.props.index
     var item = this.props.item
     var ShowReplyBox = '', mainComment=''
     if (this.state.replyBox == true) {
-      ShowReplyBox = (<input placeholder="Write a reply..." type="text" ref="Reply" onKeyPress={(e) => {
-        this.props.OnCommentKeyPress(e.charCode, this, index);
+      ShowReplyBox = (<input placeholder="Write a reply..." type="text" ref="Reply"   onChange={(e) => {this.savingReply.bind(this)}} onKeyPress={(e) => {
+        this.props.OnCommentKeyPress(e.charCode, this, index, this.state.replyInput);
         e.charCode == '13'? this.setState({replyBox: false}): ''
       }} autoFocus/>)
     } else {
@@ -91,7 +97,7 @@ export default class MainCommentThread extends React.Component {
         <div className="commentToComment_top_margin">
           <div>
             {item.reply.replyToReply.map((items, indexe) => {
-              return <ReplyToReplyComponent CommentStatic={this.props.CommentStatic} ReplyLike={this.props.ReplyLike} ReplyRemover={this.props.ReplyRemover} showReply={this.replyBoxHandler.bind(this)} items={items} indexP={index} indexe={indexe} key={indexe}/>
+              return <ReplyToReplyComponent OnCommentKeyPress={this.props.OnCommentKeyPress} CommentStatic={this.props.CommentStatic} ReplyLike={this.props.ReplyLike} ReplyRemover={this.props.ReplyRemover} showReply={this.replyBoxHandler.bind(this)} items={items} indexP={index} indexe={indexe} key={indexe}/>
             })}
           </div>
           <div className="commentToCom_input">

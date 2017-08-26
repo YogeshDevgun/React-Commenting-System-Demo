@@ -101,8 +101,8 @@ export default class CommentPage extends Component {
     }
   }
 
-  HandleReply(e, a, c) {
-    console.log(e, a)
+  HandleReply(e, a, c, d) {
+    console.log(e,"1", a,"3", c, "4", d)
     if (e == '13') {
       if (a.refs.Reply.value) {
         CommentStatic[c].reply.replyToReply.splice(0, 0, {

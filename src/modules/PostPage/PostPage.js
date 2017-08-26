@@ -7,8 +7,9 @@ export default class PostPage extends Component {
   }
 
   logoutHandler(){
-    localStorage.clear();
-
+    localStorage.removeItem('id');
+       localStorage.removeItem('img_url');
+       localStorage.removeItem('name');
   }
 
   render() {
