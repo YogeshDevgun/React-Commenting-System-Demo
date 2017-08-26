@@ -23,12 +23,11 @@ export default class CommentPage extends Component {
   }
 
   CommentRemover(index) {
-    console.log("yo",)
     if(CommentStatic[index].reply.replyByUser.id==localStorage.getItem('id')){
       CommentStatic.splice(index, 1)
 
     } else{
-      alert("You cant delete this")
+      alert("No cheating, login from id and then delete")
     }
     this.forceUpdate()
   }
@@ -109,7 +108,7 @@ export default class CommentPage extends Component {
 
   render() {
     var comments = CommentStatic.map((item, index) => {
-      return <MainCommentThread ReplyBox={this.state.ReplyBox} EditreplyBox={this.state.editreplyBox} SavingComment = {this.savingComment.bind(this)}  ReplyLike={this.ReplyLike.bind(this)} CommentBinder={this.CommentBinder.bind(this)} CommentLike={this.CommentLike.bind(this)} ReplyRemover={this.ReplyRemover.bind(this)} CommentRemover={this.CommentRemover.bind(this)} OnCommentKeyPress={this.HandleReply.bind(this)} item={item} index={index} key={index}/>
+      return <MainCommentThread CommentStatic={CommentStatic} ReplyBox={this.state.ReplyBox} EditreplyBox={this.state.editreplyBox} SavingComment = {this.savingComment.bind(this)}  ReplyLike={this.ReplyLike.bind(this)} CommentBinder={this.CommentBinder.bind(this)} CommentLike={this.CommentLike.bind(this)} ReplyRemover={this.ReplyRemover.bind(this)} CommentRemover={this.CommentRemover.bind(this)} OnCommentKeyPress={this.HandleReply.bind(this)} item={item} index={index} key={index}/>
     })
     return (
       <div className="comment_container">

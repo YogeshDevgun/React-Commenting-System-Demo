@@ -9,8 +9,13 @@ export default class ReplytoReply extends React.Component {
     }
   }
 
-  editreplyToreply(){
-    this.setState({replyToreplyEdit: true})
+  editreplyToreply( index1, index2){
+    console.log("yaho", index1, index2);
+    if(    this.props.CommentStatic[index1].reply.replyToReply[index2].replyToReplyByUser.id==localStorage.getItem('id')){
+      this.setState({replyToreplyEdit: true})
+    } else{
+      alert("Access denied");
+    }
   }
 
   onBlurHandler(){
@@ -37,7 +42,7 @@ export default class ReplytoReply extends React.Component {
               <span role="presentation" aria-hidden="true">&nbsp;·&nbsp;</span>
               <span className="pointer act" onClick={()=>{this.props.showReply(indexe)}}>Reply</span>
               <span role="presentation" aria-hidden="true">&nbsp;·&nbsp;</span>
-              <span className="act" onClick={this.editreplyToreply.bind(this)}>Edit</span>
+              <span className="act" onClick={this.editreplyToreply.bind(this, this.props.indexP,indexe)}>Edit</span>
               <span role="presentation" aria-hidden="true">&nbsp;·&nbsp;</span>
               <span onClick={()=>{this.props.ReplyRemover(this.props.indexP,indexe)}} className="act">Delete</span>
             </div>

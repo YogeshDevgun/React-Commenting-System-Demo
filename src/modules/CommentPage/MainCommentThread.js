@@ -15,8 +15,12 @@ export default class MainCommentThread extends React.Component {
     this.setState({replyBox: true})
   }
 
-  editBoxHandler(){
-    this.setState({editreplyBoxM: true})
+  editBoxHandler(a){
+    if(this.props.CommentStatic[a].reply.replyByUser.id==localStorage.getItem('id')){
+      this.setState({editreplyBoxM: true})
+    } else{
+      alert("Access denied");
+    }
   }
 
   onBlurHandler(){
@@ -57,7 +61,7 @@ export default class MainCommentThread extends React.Component {
               <span role="presentation" aria-hidden="true">
                 &nbsp;·&nbsp;
               </span>
-              <span className="act" onClick={this.editBoxHandler.bind(this)}>Edit</span>
+              <span className="act" onClick={this.editBoxHandler.bind(this, index)}>Edit</span>
               <span role="presentation" aria-hidden="true">
                 &nbsp;·&nbsp;
               </span>
@@ -87,7 +91,7 @@ export default class MainCommentThread extends React.Component {
         <div className="commentToComment_top_margin">
           <div>
             {item.reply.replyToReply.map((items, indexe) => {
-              return <ReplyToReplyComponent ReplyLike={this.props.ReplyLike} ReplyRemover={this.props.ReplyRemover} showReply={this.replyBoxHandler.bind(this)} items={items} indexP={index} indexe={indexe} key={indexe}/>
+              return <ReplyToReplyComponent CommentStatic={this.props.CommentStatic} ReplyLike={this.props.ReplyLike} ReplyRemover={this.props.ReplyRemover} showReply={this.replyBoxHandler.bind(this)} items={items} indexP={index} indexe={indexe} key={indexe}/>
             })}
           </div>
           <div className="commentToCom_input">
