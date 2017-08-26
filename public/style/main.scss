@@ -72,6 +72,7 @@ body {
 .comment_box {
   margin: 7.5px 0;
   width: 100%;
+  margin-bottom: 0px;
 }
 
 .commentToCom_Container {
@@ -79,6 +80,7 @@ body {
   margin-left: 39px;
   border-left: 0.9px solid #c0ccda;
   padding-left: 8px;
+  margin-top: 10px;
 }
 
 .commentToCom_input input {
@@ -101,6 +103,7 @@ body {
   margin-left: 39px;
   border-left: 0.9px solid #c0ccda;
   padding-left: 8px;
+  margin-top: 7px;
 }
 
 .comment_actions {
@@ -173,7 +176,7 @@ body {
   padding: 12px 12px 0;
 }
 
-.user_image {
+.user_image, .user_image img {
   height: 45px;
   width: 45px;
   border: 1px solid #c0ccda;
@@ -297,4 +300,12 @@ body {
 
 .login_button {
   cursor: pointer;
+}
+
+.error_display{
+  font-size: 13px;
+    font-weight: 700;
+    margin-top: 10px;
+    text-align: center;
+    color: red;
 }

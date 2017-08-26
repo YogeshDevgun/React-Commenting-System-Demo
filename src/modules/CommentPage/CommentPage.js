@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom';
 import ReactDOM from 'react-dom';
-import MainCommentThread from './MainCommentThread'
+import MainCommentThread from './MainCommentThread';
+
 let CommentIndex = ''
 let CommentStatic = []
 export default class CommentPage extends Component {
@@ -29,7 +30,7 @@ export default class CommentPage extends Component {
     CommentStatic[index].like_count++;
     this.forceUpdate()
   }
-  
+
   ReplyLike(index1, index2) {
     CommentStatic[index1].reply.replyToReply[index2].like_count++;
     this.forceUpdate();
@@ -50,9 +51,9 @@ export default class CommentPage extends Component {
             "rep_id": "1",
             "replyData": this.refs.comment.value,
             "replyByUser": {
-              "id": "1",
-              "name": "Shweta Sharma",
-              "userImg": ""
+              "id": localStorage.getItem("id"),
+              "name": localStorage.getItem("name"),
+              "userImg": localStorage.getItem("img_url")
             },
             "replytime": (new Date()).toDateString,
             "replyToReply": []

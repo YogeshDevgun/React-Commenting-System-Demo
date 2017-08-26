@@ -3,13 +3,22 @@ import React from 'react'
 export default class ReplytoReply extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      replyToreplyEdit: false,
+    }
+  }
+
+  editreplyToreply(){
+    this.setState({replyToreplyEdit: true})
   }
 
   render() {
     var indexe = this.props.indexe;
-    var items = this.props.items
-    return (
-      <div key={indexe} className="Post Reply">
+    var items = this.props.items, replyToReply;
+
+    if(!this.state.replyToreplyEdit){
+      replyToReply = (
         <div className="commentToCom_Container disp_inliFl">
           <div className="commentToCom_left">
             <img src={'http://lorempixel.com/26/26'} alt="na"></img>
@@ -25,13 +34,25 @@ export default class ReplytoReply extends React.Component {
               <span role="presentation" aria-hidden="true">&nbsp;·&nbsp;</span>
               <span className="pointer act" onClick={()=>{this.props.showReply(indexe)}}>Reply</span>
               <span role="presentation" aria-hidden="true">&nbsp;·&nbsp;</span>
-              <span className="act">Edit</span>
+              <span className="act" onClick={this.editreplyToreply.bind(this)}>Edit</span>
               <span role="presentation" aria-hidden="true">&nbsp;·&nbsp;</span>
               <span onClick={()=>{this.props.ReplyRemover(this.props.indexP,indexe)}} className="act">Delete</span>
             </div>
           </div>
         </div>
+      )
+    } else{
+      replyToReply= (
+        <div className="commentToCom_Container">
+          <input placeholder="replyToReply"></input>
+        </div>
+      )
+    }
 
+    return (
+      <div key={indexe} className="Post Reply">
+
+        {replyToReply}
       </div>
     )
   }

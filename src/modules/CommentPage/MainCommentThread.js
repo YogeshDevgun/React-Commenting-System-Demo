@@ -6,7 +6,8 @@ export default class MainCommentThread extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      replyBox: false
+      replyBox: false,
+      editreplyBox: false
     }
   }
   replyBoxHandler(index) {
@@ -14,10 +15,16 @@ export default class MainCommentThread extends React.Component {
     this.setState({replyBox: true})
   }
 
+  editBoxHandler(index){
+    CommentIndex = index
+    this.setState({editreplyBox: true})
+
+  }
+
   render() {
     var index = this.props.index
     var item = this.props.item
-    var ShowReplyBox = ''
+    var ShowReplyBox = '', mainComment=''
     if (this.state.replyBox == true) {
       ShowReplyBox = (<input placeholder="Write a reply..." type="text" ref="Reply" onKeyPress={(e) => {
         this.props.OnCommentKeyPress(e.charCode, this, index);
@@ -26,11 +33,12 @@ export default class MainCommentThread extends React.Component {
     } else {
       ShowReplyBox = ""
     }
-    return (
-      <div key={index}>
-        <div className="comment_box displ_inlif">
+
+    if(!this.state.editreplyBox){
+      mainComment = (
+        <div className="comment_box disp_inliFl">
           <div className="comment_left">
-            <img src={'http://lorempixel.com/34/34'} className="user_img" alt="na"></img>
+            <img src={item.reply.replyByUser.userImg} className="user_img" alt="na"></img>
           </div>
           <div className="comment_right">
             <div className="comment_username">{item.reply.replyByUser.name}</div>
@@ -46,7 +54,7 @@ export default class MainCommentThread extends React.Component {
               <span role="presentation" aria-hidden="true">
                 &nbsp;·&nbsp;
               </span>
-              <span className="act">Edit</span>
+              <span className="act" onClick={this.editBoxHandler.bind(this)}>Edit</span>
               <span role="presentation" aria-hidden="true">
                 &nbsp;·&nbsp;
               </span>
@@ -56,6 +64,17 @@ export default class MainCommentThread extends React.Component {
             </div>
           </div>
         </div>
+      )
+    }else{
+      mainComment = (
+        <input value={item.reply.replyData}></input>
+      )
+    }
+
+    return (
+      <div key={index}>
+        <div className="">
+        {mainComment}
         <div className="commentToComment_top_margin">
           <div>
             {item.reply.replyToReply.map((items, indexe) => {
@@ -67,6 +86,7 @@ export default class MainCommentThread extends React.Component {
           </div>
         </div>
       </div>
+    </div>
     );
   }
 }
