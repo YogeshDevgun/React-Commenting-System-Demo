@@ -90,7 +90,7 @@ export default class CommentPage extends Component {
   render() {
     var comments = CommentStatic.map((item, index) => {
       console.log("Main",item)
-      return <MainCommentThread ReplyLike={this.ReplyLike.bind(this)} CommentLike={this.CommentLike.bind(this)} ReplyRemover={this.ReplyRemover.bind(this)} CommentRemover={this.CommentRemover.bind(this)} OnCommentKeyPress={this.HandleReply.bind(this)} item={item} index={index} key={index}/>
+      return <MainCommentThread ReplyLike={this.ReplyLike.bind(this)} CommentBinder={this.CommentBinder} CommentLike={this.CommentLike.bind(this)} ReplyRemover={this.ReplyRemover.bind(this)} CommentRemover={this.CommentRemover.bind(this)} OnCommentKeyPress={this.HandleReply.bind(this)} item={item} index={index} key={index}/>
     })
     return (
       <div className="comment_container">

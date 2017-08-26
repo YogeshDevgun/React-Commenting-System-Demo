@@ -40,13 +40,15 @@ class SignUp extends Component {
 
   loginUserHandler(){
     var abc = dummyUsers.findIndex((item)=>{
+      console.log("item", item);
       return (item.username==this.refs.username.value && item.password==this.refs.password.value)
     })
+    console.log("ABC", abc);
     if(abc>-1){
-      localStorage.setItem('id', dummyUsers[abc].id);
+        localStorage.setItem('id', dummyUsers[abc].id);
           localStorage.setItem('name', dummyUsers[abc].name);
           localStorage.setItem('img_url', dummyUsers[abc].img_url);
-this.props.history.push('/postpage')
+          this.props.history.push('/postpage')
     }
     else{
        this.setState({error: true})

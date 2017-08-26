@@ -336,3 +336,7 @@ button:focus {outline:0;}
 .logout_button button:hover{
   opacity: 1;
 }
+
+.editReply{
+  width: calc(100% - 42px);
+}

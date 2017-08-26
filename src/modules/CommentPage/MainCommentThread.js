@@ -21,6 +21,14 @@ export default class MainCommentThread extends React.Component {
 
   }
 
+  onBlurHandler(){
+    this.setState({editreplyBox: false})
+  }
+
+  componentDidMount(){
+    this.refs.comment.value = this.props.item.reply.replyData
+  }
+
   render() {
     var index = this.props.index
     var item = this.props.item
@@ -36,10 +44,6 @@ export default class MainCommentThread extends React.Component {
 
     if(!this.state.editreplyBox){
       mainComment = (
-        <div className="comment_box disp_inliFl">
-          <div className="comment_left">
-            <img src={item.reply.replyByUser.userImg} className="user_img" alt="na"></img>
-          </div>
           <div className="comment_right">
             <div className="comment_username">{item.reply.replyByUser.name}</div>
             <div className="comment_text">{item.reply.replyData}</div>
@@ -63,18 +67,23 @@ export default class MainCommentThread extends React.Component {
               }} className="act">Delete</span>
             </div>
           </div>
-        </div>
       )
     }else{
       mainComment = (
-        <input value={item.reply.replyData}></input>
+        <input ref="comment" onKeyPress={this.props.CommentBinder} onBlur={this.onBlurHandler.bind(this)}></input>
       )
     }
 
     return (
       <div key={index}>
         <div className="">
-        {mainComment}
+          <div className="comment_box disp_inliFl">
+            <div className="comment_left">
+              <img src={item.reply.replyByUser.userImg} className="user_img" alt="na"></img>
+            </div>
+            {mainComment}
+          </div>
+
         <div className="commentToComment_top_margin">
           <div>
             {item.reply.replyToReply.map((items, indexe) => {

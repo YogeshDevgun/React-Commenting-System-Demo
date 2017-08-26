@@ -13,17 +13,19 @@ export default class ReplytoReply extends React.Component {
     this.setState({replyToreplyEdit: true})
   }
 
+  onBlurHandler(){
+    this.setState({replyToreplyEdit: false})
+  }
+
+  resplyToReplyEdit(){}
+
   render() {
     var indexe = this.props.indexe;
     var items = this.props.items, replyToReply;
 
     if(!this.state.replyToreplyEdit){
       replyToReply = (
-        <div className="commentToCom_Container">
-          <div className="commentToCom_wrapper disp_inliFl">
-          <div className="commentToCom_left">
-            <img src={items.replyToReplyByUser.userImg} alt="na"></img>
-          </div>
+
           <div className="commenttocomment_right ">
             <div className="">
               <div className="comment_username">{items.replyToReplyByUser.name}
@@ -40,21 +42,26 @@ export default class ReplytoReply extends React.Component {
               <span onClick={()=>{this.props.ReplyRemover(this.props.indexP,indexe)}} className="act">Delete</span>
             </div>
           </div>
-          </div>
-        </div>
+
       )
     } else{
       replyToReply= (
-        <div className="commentToCom_Container">
-          <input placeholder="replyToReply"></input>
+        <div className="editReply">
+          <input value={items.replyToReplyData} onChange={this.resplyToReplyEdit.bind(this)} placeholder="replyToReply" onBlur={this.onBlurHandler.bind(this)}></input>
         </div>
       )
     }
 
     return (
       <div key={indexe} className="Post Reply">
-
-        {replyToReply}
+        <div className="commentToCom_Container">
+          <div className="commentToCom_wrapper disp_inliFl">
+            <div className="commentToCom_left">
+              <img src={items.replyToReplyByUser.userImg} alt="na"></img>
+            </div>
+            {replyToReply}
+          </div>
+        </div>
       </div>
     )
   }
