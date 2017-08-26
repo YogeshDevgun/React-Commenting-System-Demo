@@ -10,7 +10,6 @@ export default class ReplytoReply extends React.Component {
   }
 
   editreplyToreply( index1, index2){
-    console.log("yaho", index1, index2);
     if(    this.props.CommentStatic[index1].reply.replyToReply[index2].replyToReplyByUser.id==localStorage.getItem('id')){
       this.setState({replyToreplyEdit: true})
     } else{
@@ -22,7 +21,7 @@ export default class ReplytoReply extends React.Component {
     this.setState({replyToreplyEdit: false})
   }
 
-  resplyToReplyEdit(){}
+  replyToReplyEditHandl(){}
 
   render() {
     var indexe = this.props.indexe;
@@ -52,7 +51,7 @@ export default class ReplytoReply extends React.Component {
     } else{
       replyToReply= (
         <div className="editReply">
-          <input value={items.replyToReplyData} onChange={this.resplyToReplyEdit.bind(this)} placeholder="replyToReply" onBlur={this.onBlurHandler.bind(this)}></input>
+          <input value={items.replyToReplyData} onChange={(e) => {this.props.replyToReplyEditHandl(e,this);item.reply.replyData=e.target.value}} placeholder="replyToReply" onBlur={this.onBlurHandler.bind(this)}></input>
         </div>
       )
     }

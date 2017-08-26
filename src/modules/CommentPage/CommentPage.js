@@ -14,13 +14,28 @@ export default class CommentPage extends Component {
       replyBox: false,
       editreplyBox: false
     }
-    this.CommentBinder = this.CommentBinder.bind(this)
+    this.CommentBinder = this.CommentBinder.bind(this);
+    this.componentCleanup = this.componentCleanup.bind(this);
   }
 
   componentDidMount() {
+    if(localStorage.getItem('Comments')){
+      CommentStatic=JSON.parse(localStorage.getItem('Comments'))
+      this.forceUpdate()
+    }
+    window.addEventListener('beforeunload', this.componentCleanup);
     this.setState({postComments: CommentStatic})
-    ReactDOM.findDOMNode(this.refs.comment).focus();
+
+   ReactDOM.findDOMNode(this.refs.comment).focus();
   }
+
+  componentWillUnmount() {
+        window.removeEventListener('beforeunload', this.componentCleanup); // remove the event handler for normal unmounting
+    }
+
+    componentCleanup() {
+   localStorage.setItem('Comments',JSON.stringify(CommentStatic))
+    }
 
   CommentRemover(index) {
     if(CommentStatic[index].reply.replyByUser.id==localStorage.getItem('id')){
