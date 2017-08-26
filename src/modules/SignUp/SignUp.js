@@ -112,8 +112,7 @@ class SignUp extends Component {
           <span  onClick={this.switchViewHandler.bind(this)} className="login_button">Login</span>
         </div>
         <div className="clr"></div>
-        <button onClick={this.loginUserHandler.bind(this)}>Login</button>
-        <Link to="/postpage" className="login_actionbutton"></Link>
+        <Link to="/postpage" className="login_actionbutton">  <button onClick={this.loginUserHandler.bind(this)}>Login</button></Link>
       </div>
     }
     return (
