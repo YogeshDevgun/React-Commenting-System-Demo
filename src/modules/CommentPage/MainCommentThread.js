@@ -6,8 +6,8 @@ export default class MainCommentThread extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      replyBox: false,
-      editreplyBox: false
+      replyBoxM: this.props.ReplyBox,
+      editreplyBoxM: this.props.EditreplyBox,
     }
   }
   replyBoxHandler(index) {
@@ -15,18 +15,17 @@ export default class MainCommentThread extends React.Component {
     this.setState({replyBox: true})
   }
 
-  editBoxHandler(index){
-    CommentIndex = index
-    this.setState({editreplyBox: true})
-
+  editBoxHandler(){
+    this.setState({editreplyBoxM: true})
   }
 
   onBlurHandler(){
-    this.setState({editreplyBox: false})
+    this.setState({editreplyBoxM: false})
   }
 
   componentDidMount(){
-    this.refs.comment.value = this.props.item.reply.replyData
+    console.log(this.refs.comments,"Print this",this.props.item.reply.replyData);
+    // this.refs.comment.value = this.props.item.reply.replyData
   }
 
   render() {
@@ -42,7 +41,7 @@ export default class MainCommentThread extends React.Component {
       ShowReplyBox = ""
     }
 
-    if(!this.state.editreplyBox){
+    if(!this.state.editreplyBoxM){
       mainComment = (
           <div className="comment_right">
             <div className="comment_username">{item.reply.replyByUser.name}</div>
@@ -70,8 +69,9 @@ export default class MainCommentThread extends React.Component {
       )
     }else{
       mainComment = (
-        <input ref="comment" onKeyPress={this.props.CommentBinder} onBlur={this.onBlurHandler.bind(this)}></input>
-      )
+          <input type="text" value={item.reply.replyData} onChange={(e) => {this.props.SavingComment(this)}} placeholder="Edit reply" ref="comments" onKeyPress={this.props.CommentBinder} onBlur={this.onBlurHandler.bind(this)}></input>
+
+    )
     }
 
     return (

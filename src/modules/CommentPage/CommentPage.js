@@ -11,7 +11,8 @@ export default class CommentPage extends Component {
     this.state = {
       commentInput: '',
       postComments: [],
-      replyBox: false
+      replyBox: false,
+      editreplyBox: false
     }
     this.CommentBinder = this.CommentBinder.bind(this)
   }
@@ -22,8 +23,13 @@ export default class CommentPage extends Component {
   }
 
   CommentRemover(index) {
-    console.log(index)
-    CommentStatic.splice(index, 1)
+    console.log("yo",)
+    if(CommentStatic[index].reply.replyByUser.id==localStorage.getItem('id')){
+      CommentStatic.splice(index, 1)
+
+    } else{
+      alert("You cant delete this")
+    }
     this.forceUpdate()
   }
   CommentLike(index) {
@@ -37,19 +43,29 @@ export default class CommentPage extends Component {
   }
 
   ReplyRemover(index1, index2) {
-    console.log(index1, index2)
+    console.log(CommentStatic[index1].reply.replyToReply[index2].replyToReplyByUser.id,"yayaya")
     // CommentStatic.splice(index,1)
-    CommentStatic[index1].reply.replyToReply.splice(index2, 1)
+    if(CommentStatic[index1].reply.replyToReply[index2].replyToReplyByUser.id==localStorage.getItem('id')){
+      CommentStatic[index1].reply.replyToReply.splice(index2, 1)
+    } else{
+      alert("You cant delete this")
+    }
     this.forceUpdate()
   }
 
+  savingComment(e, y){
+    console.log(e.target.value);
+    this.setState({commentInput: e.target.value})
+  }
+
   CommentBinder(e) {
+    console.log("yup", e.charCode);
     if (e.charCode == '13') {
       if (this.refs.comment.value) {
         CommentStatic.splice(0, 0, {
           "reply": {
             "rep_id": "1",
-            "replyData": this.refs.comment.value,
+            "replyData": this.state.commentInput,
             "replyByUser": {
               "id": localStorage.getItem("id"),
               "name": localStorage.getItem("name"),
@@ -61,6 +77,7 @@ export default class CommentPage extends Component {
           "like_count": 0,
           "edit": false
         })
+        this.setState({replyBox: false})
         this.refs.comment.value = ''
         this.refs.comment.blur()
         this.forceUpdate()
@@ -82,19 +99,19 @@ export default class CommentPage extends Component {
             "userImg": localStorage.getItem("img_url")
           }
         })
-        this.forceUpdate()
+        this.setState({editreplyBox: false});
+        this.forceUpdate();
       }
     }
   }
 
   render() {
     var comments = CommentStatic.map((item, index) => {
-      console.log("Main",item)
-      return <MainCommentThread ReplyLike={this.ReplyLike.bind(this)} CommentBinder={this.CommentBinder} CommentLike={this.CommentLike.bind(this)} ReplyRemover={this.ReplyRemover.bind(this)} CommentRemover={this.CommentRemover.bind(this)} OnCommentKeyPress={this.HandleReply.bind(this)} item={item} index={index} key={index}/>
+      return <MainCommentThread ReplyBox={this.state.ReplyBox} EditreplyBox={this.state.editreplyBox} SavingComment = {this.savingComment.bind(this)}  ReplyLike={this.ReplyLike.bind(this)} CommentBinder={this.CommentBinder.bind(this)} CommentLike={this.CommentLike.bind(this)} ReplyRemover={this.ReplyRemover.bind(this)} CommentRemover={this.CommentRemover.bind(this)} OnCommentKeyPress={this.HandleReply.bind(this)} item={item} index={index} key={index}/>
     })
     return (
       <div className="comment_container">
-        <input type="text" placeholder="Write a comment..." ref="comment" onKeyPress={this.CommentBinder}></input>
+        <input type="text" placeholder="Write a comment..." ref="comment" onChange={this.savingComment.bind(this)} onKeyPress={this.CommentBinder}></input>
         <div>
           {comments}
         </div>

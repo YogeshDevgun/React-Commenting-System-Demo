@@ -8,8 +8,8 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      login: false,
-      register: true,
+      login: true,
+      register: false,
       username:'',
       password:'',
       error: false
@@ -107,8 +107,8 @@ class SignUp extends Component {
         {errorDisplay}
 
         <div className="signup_loginbutton">
-          <span>Already Registered?&nbsp;</span>
-          <span  onClick={this.switchViewHandler.bind(this)} className="login_button">Login</span>
+          <span>Not Registered?&nbsp;</span>
+          <span  onClick={this.switchViewHandler.bind(this)} className="login_button">Register</span>
         </div>
         <div className="clr"></div>
         <div className="login_actionbutton">
