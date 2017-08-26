@@ -1,4 +1,3 @@
-
 html, body, div, span, applet, object, iframe,
  blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -35,7 +34,6 @@ body {
   border: 1px solid;
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   border-radius: 4px;
-  // padding: 12px;
   background: #fff;
   position: relative;
 }
@@ -73,7 +71,7 @@ body {
 .comment_box {
   margin: 7.5px 0;
   width: 100%;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .commentToCom_Container {
@@ -81,13 +79,13 @@ body {
   margin-left: 39px;
   border-left: 0.9px solid #c0ccda;
   padding-left: 8px;
-  // margin-top: 10px;
 }
 
-.commentToCom_wrapper{
+.commentToCom_wrapper {
   margin-top: 8px;
-      width: 100%;
+  width: 100%;
 }
+
 .commentToCom_input input {
   width: calc(100% - 8px);
   height: 36px;
@@ -182,7 +180,8 @@ body {
   padding: 12px 12px 0;
 }
 
-.user_image, .user_image img {
+.user_image,
+.user_image img {
   height: 45px;
   width: 45px;
   border: 1px solid #c0ccda;
@@ -308,36 +307,37 @@ body {
   cursor: pointer;
 }
 
-.error_display{
+.error_display {
   font-size: 13px;
-    font-weight: 700;
-    margin-top: 10px;
-    text-align: center;
-    color: red;
+  font-weight: 700;
+  margin-top: 10px;
+  text-align: center;
+  color: red;
 }
 
-.logout_button button{
+.logout_button button {
   background: red;
-    border: none;
-    width: 120px;
-    padding: 6px;
-    border-radius: 5px;
-    color: #fff;
-    font-weight: 700;
-    opacity: 0.8;
-    cursor: pointer;
-    position: absolute;
-    right: 12px;
-    top: 20px;
+  border: none;
+  width: 120px;
+  padding: 6px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 700;
+  opacity: 0.8;
+  cursor: pointer;
+  position: absolute;
+  right: 12px;
+  top: 20px;
 }
 
-button:focus {outline:0;}
+button:focus {
+  outline: 0;
+}
 
-
-.logout_button button:hover{
+.logout_button button:hover {
   opacity: 1;
 }
 
-.editReply{
+.editReply {
   width: calc(100% - 42px);
 }

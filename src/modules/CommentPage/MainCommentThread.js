@@ -69,7 +69,7 @@ export default class MainCommentThread extends React.Component {
       )
     }else{
       mainComment = (
-          <input type="text" value={item.reply.replyData} onChange={(e) => {this.props.SavingComment(this)}} placeholder="Edit reply" ref="comments" onKeyPress={this.props.CommentBinder} onBlur={this.onBlurHandler.bind(this)}></input>
+          <input type="text" value={item.reply.replyData} onChange={(e) => {this.props.SavingComment(e,this);item.reply.replyData=e.target.value}} placeholder="Edit reply" ref="comments" onKeyPress={(e)=>{this.props.CommentBinder(e,'CommentEdit',index);e.charCode=='13'?this.setState({editreplyBoxM:false}):''}} onBlur={this.onBlurHandler.bind(this)}></input>
 
     )
     }

@@ -58,11 +58,13 @@ export default class CommentPage extends Component {
     this.setState({commentInput: e.target.value})
   }
 
-  CommentBinder(e) {
+  CommentBinder(e,a,c) {
     console.log("yup", e.charCode);
     if (e.charCode == '13') {
-      if (this.refs.comment.value) {
-        CommentStatic.splice(0, 0, {
+      if (this.refs.comment.value || a=='CommentEdit') {
+        var startIndex= a=='CommentEdit'?c:0
+        var ReplaceNoOfItems= a=='CommentEdit'?1:0
+        CommentStatic.splice(startIndex, ReplaceNoOfItems, {
           "reply": {
             "rep_id": "1",
             "replyData": this.state.commentInput,
