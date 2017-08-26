@@ -17,8 +17,8 @@ class SignUp extends Component {
   }
 
   componentWillMount(){
-    console.log("ID", localStorage);
   }
+  
   switchViewHandler() {
     this.setState({login: false, register: true});
   }
@@ -29,7 +29,6 @@ class SignUp extends Component {
 
 
   passwordHandler(e){
-    console.log("Pass",e.target.value);
     this.setState({password: e.target.value, error:false})
   }
 
@@ -38,12 +37,9 @@ class SignUp extends Component {
   }
 
   loginUserHandler(){
-    console.log("One");
     var abc = dummyUsers.findIndex((item)=>{
-      console.log(item.username==this.refs.username.value , item.password==this.refs.password.value);
       return (item.username==this.refs.username.value && item.password==this.refs.password.value)
     })
-    console.log("ABC", abc);
       if(abc>-1){
           localStorage.setItem('id', dummyUsers[abc].id);
             localStorage.setItem('name', dummyUsers[abc].name);
@@ -57,7 +53,6 @@ class SignUp extends Component {
   render() {
     var viewSwitch, errorDisplay;
     if(this.state.error){
-      console.log("fuck");
     errorDisplay = <div className="error_display">
       Username/Password does not match
     </div>

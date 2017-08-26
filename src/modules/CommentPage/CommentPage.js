@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom';
 import ReactDOM from 'react-dom';
@@ -21,12 +22,17 @@ export default class CommentPage extends Component {
   componentDidMount() {
     if(localStorage.getItem('Comments')){
       CommentStatic=JSON.parse(localStorage.getItem('Comments'))
-      this.forceUpdate()
     }
     window.addEventListener('beforeunload', this.componentCleanup);
     this.setState({postComments: CommentStatic})
 
    ReactDOM.findDOMNode(this.refs.comment).focus();
+  }
+
+  shouldComponentUpdate(){
+    this.forceUpdate();
+    return true;
+
   }
 
   componentWillUnmount() {
@@ -57,7 +63,6 @@ export default class CommentPage extends Component {
   }
 
   ReplyRemover(index1, index2) {
-    console.log(CommentStatic[index1].reply.replyToReply[index2].replyToReplyByUser.id,"yayaya")
     // CommentStatic.splice(index,1)
     if(CommentStatic[index1].reply.replyToReply[index2].replyToReplyByUser.id==localStorage.getItem('id')){
       CommentStatic[index1].reply.replyToReply.splice(index2, 1)
@@ -68,12 +73,10 @@ export default class CommentPage extends Component {
   }
 
   savingComment(e, y){
-    console.log(e.target.value);
     this.setState({commentInput: e.target.value})
   }
 
   CommentBinder(e,a,c) {
-    console.log("yup", e.charCode);
     if (e.charCode == '13') {
       if (this.refs.comment.value || a=='CommentEdit') {
         var startIndex= a=='CommentEdit'?c:0
@@ -101,14 +104,16 @@ export default class CommentPage extends Component {
     }
   }
 
-  HandleReply(e, a, c, d) {
-    console.log(e,"1", a,"3", c, "4", d)
+  HandleReply(e, a, c, d,f) {
     if (e == '13') {
-      if (a.refs.Reply.value) {
-        CommentStatic[c].reply.replyToReply.splice(0, 0, {
+      if (a=='ReplyToReply' || a.refs.Reply.value) {
+        var startIndex= a=='ReplyToReply'?c:0
+        var ItemToRemove= a=='ReplyToReply'?1:0
+        var ComentMainLoopIndex = a=='ReplyToReply'?f:c
+        CommentStatic[ComentMainLoopIndex].reply.replyToReply.splice(startIndex, ItemToRemove, {
           "like_count": 0,
           "rep_tor_id": "111",
-          "replyToReplyData": a.refs.Reply.value,
+          "replyToReplyData": a=='ReplyToReply'?d:a.refs.Reply.value,
           "replyToReplyByUser": {
             "id": localStorage.getItem("id"),
             "name": localStorage.getItem("name"),

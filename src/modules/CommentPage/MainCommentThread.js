@@ -29,12 +29,10 @@ export default class MainCommentThread extends React.Component {
   }
 
   componentDidMount(){
-    console.log(this.refs.comments,"Print this",this.props.item.reply.replyData);
     // this.refs.comment.value = this.props.item.reply.replyData
   }
 
   savingReply(e){
-    console.log(e.target.value);
     this.setState({replyInput: e.target.value})
   }
 

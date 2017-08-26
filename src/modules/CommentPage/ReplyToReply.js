@@ -8,6 +8,7 @@ export default class ReplytoReply extends React.Component {
       replyToreplyEdit: false,
       replyInput: ''
     }
+    this.replyToReplyEditHandl=this.replyToReplyEditHandl.bind(this)
   }
 
   editreplyToreply( index1, index2){
@@ -23,7 +24,6 @@ export default class ReplytoReply extends React.Component {
   }
 
   replyToReplyEditHandl(e){
-    console.log("yea", e.target.value);
     this.setState({replyInput: e.target.value})
   }
 
@@ -56,10 +56,10 @@ export default class ReplytoReply extends React.Component {
       replyToReply= (
         <div className="editReply">
           <input value={items.replyToReplyData}
-            onChange={this.replyToReplyEditHandl.bind(this)}
+            onChange={(e)=>{this.replyToReplyEditHandl(e);items.replyToReplyData=e.target.value}}
             onKeyPress={(e) => {
-              this.props.OnCommentKeyPress(e.charCode, this, index, this.state.replyInput);
-              e.charCode == '13'? this.setState({replyBox: false}): ''
+              this.props.OnCommentKeyPress(e.charCode, 'ReplyToReply', indexe, this.state.replyInput,this.props.indexP);
+              e.charCode == '13'? this.setState({replyToreplyEdit: false}): ''
             }}
             placeholder="replyToReply" onBlur={this.onBlurHandler.bind(this)}></input>
         </div>
