@@ -40,7 +40,7 @@ class SignUp extends Component {
 
   loginUserHandler(){
 
-    dummyUsers.map((item, index) => {
+    var userloggedIn = dummyUsers.map((item, index) => {
       console.log("User", item);
       if(this.state.username === item.username
         && this.state.password === item.password){
@@ -48,6 +48,7 @@ class SignUp extends Component {
           localStorage.setItem('id', item.id);
           localStorage.setItem('name', item.name);
           localStorage.setItem('img_url', item.img_url);
+          return true;
         }else{
           console.log("Fail");
           this.setState({error: true})

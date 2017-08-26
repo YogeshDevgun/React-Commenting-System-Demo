@@ -6,6 +6,11 @@ export default class PostPage extends Component {
     super(props);
   }
 
+  logoutHandler(){
+    localStorage.clear();
+
+  }
+
   render() {
     return (
       <div className="post_container">
@@ -22,6 +27,9 @@ export default class PostPage extends Component {
               <div>10 hrs</div>
               <div className="post_location">Hyderabad</div>
             </div>
+          </div>
+          <div className="logout_button">
+            <Link to="/"><button onClick={this.logoutHandler.bind(this)}>Logout</button></Link>
           </div>
         </div>
         <div className="post">I Have Good News And Bad News To Tell You. The Bad News? I Have No Good News. And The Good News? I Have No Bad News.

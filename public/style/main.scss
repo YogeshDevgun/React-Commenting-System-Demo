@@ -37,6 +37,7 @@ body {
   border-radius: 4px;
   // padding: 12px;
   background: #fff;
+  position: relative;
 }
 @media(max-width: 768px) {
   .post_container {
@@ -308,4 +309,26 @@ body {
     margin-top: 10px;
     text-align: center;
     color: red;
+}
+
+.logout_button button{
+  background: red;
+    border: none;
+    width: 120px;
+    padding: 6px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 700;
+    opacity: 0.8;
+    cursor: pointer;
+    position: absolute;
+    right: 12px;
+    top: 20px;
+}
+
+button:focus {outline:0;}
+
+
+.logout_button button:hover{
+  opacity: 1;
 }
