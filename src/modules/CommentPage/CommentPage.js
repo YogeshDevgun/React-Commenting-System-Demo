@@ -46,15 +46,15 @@ export default class CommentPage extends Component {
   CommentRemover(index) {
     if(CommentStatic[index].reply.replyByUser.id==localStorage.getItem('id')){
       CommentStatic.splice(index, 1)
+      this.forceUpdate();
 
     } else{
       alert("No cheating, login from id and then delete")
     }
-    this.forceUpdate()
   }
   CommentLike(index) {
     CommentStatic[index].like_count++;
-    this.forceUpdate()
+    this.forceUpdate();
   }
 
   ReplyLike(index1, index2) {
@@ -66,10 +66,10 @@ export default class CommentPage extends Component {
     // CommentStatic.splice(index,1)
     if(CommentStatic[index1].reply.replyToReply[index2].replyToReplyByUser.id==localStorage.getItem('id')){
       CommentStatic[index1].reply.replyToReply.splice(index2, 1)
+      this.forceUpdate();
     } else{
-      alert("You cant delete this")
+      alert("No cheating, login from id and then delete")
     }
-    this.forceUpdate()
   }
 
   savingComment(e, y){
@@ -99,7 +99,6 @@ export default class CommentPage extends Component {
         this.setState({replyBox: false})
         this.refs.comment.value = ''
         this.refs.comment.blur()
-        this.forceUpdate()
       }
     }
   }
@@ -121,7 +120,6 @@ export default class CommentPage extends Component {
           }
         })
         this.setState({editreplyBox: false});
-        this.forceUpdate();
       }
     }
   }

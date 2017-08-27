@@ -20,7 +20,7 @@ time, mark, audio, video {
 }
 
 body {
-  background: #fafaff;
+  background-image: linear-gradient(to top, #dfe9f3 70%, white 100%);
   font-family: Roboto;
 }
 
@@ -31,11 +31,13 @@ body {
 .post_container {
   width: 768px;
   margin: 20px auto;
+  margin-top: 0px;
   border: 1px solid;
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   border-radius: 4px;
-  background: #fff;
+background: rgba(255, 255, 255, 0.5);
   position: relative;
+  margin-bottom: 0px;
 }
 @media(max-width: 768px) {
   .post_container {
@@ -212,27 +214,46 @@ body {
   font-weight: 700;
   cursor: pointer;
 }
-@mixin container($background) {
-  background: $background;
-  color: #fff;
-  height: 280px;
-  width: 400px;
-  margin: 0 auto;
-  padding: 17px;
+html,body{
+  height: 100%;
+  width: 100%;
+}
+@mixin container() {
+color: #fff;
+    height: 280px;
+    width: 400px;
+    top: 0;
+    margin: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    padding: 17px;
+    border-radius: 15px;
+
 }
 
 .signup_container {
-  @include container(#1C3B3E);
+  @include container();
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+}
+#root{
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+      background-size: cover;
+      width: 100%;
+
+    // background: url('https://www.ukfiet.org/wp-content/uploads/2016/09/Comment_shutterstock_384112114.jpg')
+    // background-image: url('https://www.ukfiet.org/wp-content/uploads/2016/09/Comment_shutterstock_384112114.jpg');
 }
 
 .login_container {
-  @include container(#29585D);
-}
+  @include container();
+background-image: linear-gradient(to left, #434343 0%, black 100%);}
 
 .singup_title {
   font-size: 22px;
   text-align: center;
-  margin-bottom: 34px;
+  margin-bottom: 24px;
 }
 @mixin centering {
   display: flex;
@@ -260,7 +281,7 @@ body {
 .signup_title {
   text-align: center;
   font-size: 20px;
-  margin-bottom: 17px;
+  margin-bottom: 10px;
 }
 
 .signup_loginbutton {
@@ -272,26 +293,32 @@ body {
 .clr {
   clear: both;
 }
-@mixin button($background) {
+@mixin button() {
   margin-top: 17px;
   width: 170px;
   padding: 9px;
   border-radius: 5px;
   text-align: center;
-  background: $background;
   border: none;
   font-size: 13px;
   font-weight: 700;
-  color: #fff;
+  color: #8492a6;
   cursor: pointer;
 }
 
 .register_button button {
-  @include button(#1C3B3E);
+  @include button();
+  background-image: linear-gradient(to bottom, #dfe9f3 0%, white 100%)
 }
 
 .login_actionbutton button {
-  @include button(#29585D);
+  @include button();
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+  opacity: 0.90;
+}
+
+.login_actionbutton button:hover{
+  opacity: 1;
 }
 
 .login_actionbutton,
@@ -310,13 +337,13 @@ body {
 .error_display {
   font-size: 13px;
   font-weight: 700;
-  margin-top: 10px;
   text-align: center;
   color: red;
+  margin-bottom: 5px;
 }
 
 .logout_button button {
-  background: red;
+  background: rgba(0, 0, 0, 0.37);
   border: none;
   width: 120px;
   padding: 6px;

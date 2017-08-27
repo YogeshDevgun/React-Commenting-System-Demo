@@ -18,7 +18,7 @@ class SignUp extends Component {
 
   componentWillMount(){
   }
-  
+
   switchViewHandler() {
     this.setState({login: false, register: true});
   }
@@ -87,6 +87,8 @@ class SignUp extends Component {
       viewSwitch =
       <div>
         <div className="signup_title">Login</div>
+          {errorDisplay}
+
         <div className="signup_inputs">
           <label>
             Username:
@@ -99,7 +101,7 @@ class SignUp extends Component {
           </label>&nbsp;
           <input type="password" ref="password"></input>
         </div>
-        {errorDisplay}
+
 
         <div className="signup_loginbutton">
           <span>Not Registered?&nbsp;</span>
