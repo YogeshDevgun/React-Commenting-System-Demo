@@ -7,6 +7,7 @@
     "start": "webpack-dev-server --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "homepage": "https://yogeshdevgun.github.io/React-Commenting-System-Demo/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/YogeshDevgun/React-Commenting-System.git"
